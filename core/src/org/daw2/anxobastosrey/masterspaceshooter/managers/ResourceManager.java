@@ -66,17 +66,17 @@ public class ResourceManager {
     public final BitmapFont font = generateFont();
 
     //Sounds
-    public final Sound music = Gdx.audio.newSound(Gdx.files.internal("spaceship.wav"));
+    public final Sound music = Gdx.audio.newSound(Gdx.files.internal("game/spaceship.wav"));
 
     //MenuSkin
-    public final Skin skin = new Skin(Gdx.files.internal("uiskin2/uiskin.json"));
+    public final Skin skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
 
     public ResourceManager(){
         //Carga de las texturas, sonidos y fuentes
         this.assetManager = new AssetManager();
-        this.assetManager.load("MasterSpaceShooter.atlas", TextureAtlas.class);
+        this.assetManager.load("game/MasterSpaceShooter.atlas", TextureAtlas.class);
         this.assetManager.finishLoading();
-        this.atlas = this.assetManager.get("MasterSpaceShooter.atlas", TextureAtlas.class);
+        this.atlas = this.assetManager.get("game/MasterSpaceShooter.atlas", TextureAtlas.class);
 
         //Texture regions
 
@@ -129,7 +129,7 @@ public class ResourceManager {
     }
 
     private static BitmapFont generateFont() {
-        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("EdgeOfTheGalaxyRegular-OVEa6.otf"));
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("game/EdgeOfTheGalaxyRegular-OVEa6.otf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
         fontParameter.size = 72;
