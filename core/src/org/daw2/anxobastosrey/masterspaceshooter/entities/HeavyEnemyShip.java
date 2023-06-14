@@ -28,7 +28,7 @@ public class HeavyEnemyShip extends Ship implements Enemy{
         this.width = 10;
         this.height = 10;
         this.movementSpeed = 38;
-        this.shield = 2;
+        this.shield = 3;
 
         this.shipTextureRegion = this.rm.heavyEnemyShip;
         this.laserTextureRegion = this.rm.heavyEnemyShipLaser;

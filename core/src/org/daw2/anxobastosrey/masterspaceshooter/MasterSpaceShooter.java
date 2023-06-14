@@ -20,9 +20,9 @@ import java.util.Random;
 public class MasterSpaceShooter extends Game {
 	public MenuScreen menuScreen;
 
-	public ResourceManager rm;
-	public SpriteBatch batch;
-	public Background background;
+	public static ResourceManager rm;
+	public static SpriteBatch batch;
+	public static Background background;
 
 	public static final float WORLD_WIDTH = 92;//72
 	public static final float WORLD_HEIGHT = 148;//128
@@ -32,7 +32,7 @@ public class MasterSpaceShooter extends Game {
 
 	public static final Random random = new Random();
 
-	public static Connection api = new Connection();
+	public static final Connection api = new Connection();
 
 	@Override
 	public void create() {

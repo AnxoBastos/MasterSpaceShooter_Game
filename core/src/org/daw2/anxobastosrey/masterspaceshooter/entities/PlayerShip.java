@@ -63,10 +63,6 @@ public class PlayerShip extends Ship {
         }
     }
 
-    public void draw(Batch batch) {
-        super.draw(batch);
-    }
-
     public Laser[] fireLasers() {
         Laser[] firedLasers = new Laser[bulletLvl + 1];
         if (bulletLvl == 0) {
@@ -133,6 +129,20 @@ public class PlayerShip extends Ship {
             return false;
         }
         return true;
+    }
+    @Override
+    public void draw(Batch batch) {
+        batch.draw(this.shipTextureRegion, this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
+        if (this.shield > 0) {
+            if (this.shield >= 5){
+                this.shieldTextureRegion = this.rm.shieldLevelThreePy;
+            }
+            else if(this.shield >= 3){
+                this.shieldTextureRegion = this.rm.shieldLevelTwoPy;
+            }
+            else this.shieldTextureRegion = this.rm.shieldLevelOnePy;
+            batch.draw(this.shieldTextureRegion, this.boundingBox.x - 2.5f, this.boundingBox.y - 1.5f, this.boundingBox.width+5, this.boundingBox.height+5);
+        }
     }
 }
 

@@ -52,21 +52,26 @@ public class Hud {
         this.hudSectionWidth = MasterSpaceShooter.WORLD_WIDTH / 3;
 
         //buttons
-        this.pUBulletsButton = new Rectangle(pUButtonMargin, 2, rm.bulletUpButton.getRegionWidth()/4, rm.bulletUpButton.getRegionHeight()/4);
-        this.pUSpeedButton = new Rectangle(rm.bulletUpButton.getRegionWidth()/4 + (pUButtonMargin * 2), 2, rm.speedUpButton.getRegionWidth()/4 , rm.speedUpButton.getRegionHeight()/4);
-        this.pUShieldButton = new Rectangle(rm.bulletUpButton.getRegionWidth()/4 + rm.speedUpButton.getRegionWidth()/4 + (pUButtonMargin * 3),
-                2, rm.shieldUpButton.getRegionWidth()/4, rm.shieldUpButton.getRegionHeight()/4);
+        this.pUBulletsButton = new Rectangle(pUButtonMargin, 2, this.rm.bulletUpButton.getRegionWidth()/4, this.rm.bulletUpButton.getRegionHeight()/4);
+        this.pUSpeedButton = new Rectangle(this.rm.bulletUpButton.getRegionWidth()/4 + (pUButtonMargin * 2), 2, this.rm.speedUpButton.getRegionWidth()/4 , this.rm.speedUpButton.getRegionHeight()/4);
+        this.pUShieldButton = new Rectangle(this.rm.bulletUpButton.getRegionWidth()/4 + this.rm.speedUpButton.getRegionWidth()/4 + (pUButtonMargin * 3),
+                2, this.rm.shieldUpButton.getRegionWidth()/4, this.rm.shieldUpButton.getRegionHeight()/4);
     }
 
     public void updateAndRenderHUD(SpriteBatch batch, int score, PlayerShip playerShip) {
+        this.font.setColor(Color.WHITE);
+        if(playerShip.lives <= 0){
+            this.font.setColor(Color.RED);
+            this.font.draw(batch, "GAME OVER", MasterSpaceShooter.WORLD_WIDTH/2 - 12, MasterSpaceShooter.WORLD_HEIGHT/2, MasterSpaceShooter.WORLD_WIDTH/2, Align.left, false);
+        }
         //render top row labels
-        font.draw(batch, "Score", this.hudLeftX, this.hudRow1Y, this.hudSectionWidth, Align.left, false);
-        font.draw(batch, "Shield", this.hudCentreX, this.hudRow1Y, this.hudSectionWidth, Align.center, false);
-        font.draw(batch, "Lives", this.hudRightX, this.hudRow1Y, this.hudSectionWidth, Align.right, false);
+        this.font.draw(batch, "Score", this.hudLeftX, this.hudRow1Y, this.hudSectionWidth, Align.left, false);
+        this.font.draw(batch, "Shield", this.hudCentreX, this.hudRow1Y, this.hudSectionWidth, Align.center, false);
+        this.font.draw(batch, "Lives", this.hudRightX, this.hudRow1Y, this.hudSectionWidth, Align.right, false);
         //render second row values
-        font.draw(batch, String.format(Locale.getDefault(), "%06d", score), this.hudLeftX, this.hudRow2Y, this.hudSectionWidth, Align.left, false);
-        font.draw(batch, String.format(Locale.getDefault(), "%02d", playerShip.shield), this.hudCentreX, this.hudRow2Y, this.hudSectionWidth, Align.center, false);
-        font.draw(batch, String.format(Locale.getDefault(), "%02d", playerShip.lives), this.hudRightX, this.hudRow2Y, this.hudSectionWidth, Align.right, false);
+        this.font.draw(batch, String.format(Locale.getDefault(), "%06d", score), this.hudLeftX, this.hudRow2Y, this.hudSectionWidth, Align.left, false);
+        this.font.draw(batch, String.format(Locale.getDefault(), "%02d", playerShip.shield), this.hudCentreX, this.hudRow2Y, this.hudSectionWidth, Align.center, false);
+        this.font.draw(batch, String.format(Locale.getDefault(), "%02d", playerShip.lives), this.hudRightX, this.hudRow2Y, this.hudSectionWidth, Align.right, false);
 
         //powerups states
         if (playerShip.bulletLvl == 1){
@@ -111,12 +116,7 @@ public class Hud {
         batch.setColor(Color.WHITE);
 
         //points
-        font.draw(batch, "Points", 35, 8.5f, this.hudSectionWidth, Align.right, false);
-        font.draw(batch, String.format(Locale.getDefault(), "%06d", playerShip.points), 70, 8.5f, this.hudSectionWidth, Align.left, false);
-
-        if(playerShip.lives <= 0){
-            font.setColor(Color.RED);
-            font.draw(batch, "GAME OVER", MasterSpaceShooter.WORLD_WIDTH/2 - 12, MasterSpaceShooter.WORLD_HEIGHT/2, MasterSpaceShooter.WORLD_WIDTH/2, Align.left, false);
-        }
+        this.font.draw(batch, "Points", 35, 8.5f, this.hudSectionWidth, Align.right, false);
+        this.font.draw(batch, String.format(Locale.getDefault(), "%06d", playerShip.points), 70, 8.5f, this.hudSectionWidth, Align.left, false);
     }
 }

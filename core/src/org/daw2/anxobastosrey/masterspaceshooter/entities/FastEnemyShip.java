@@ -28,7 +28,7 @@ public class FastEnemyShip extends Ship implements Enemy{
         this.width = 10;
         this.height = 10;
         this.movementSpeed = 60;
-        this.shield = 500;
+        this.shield = 1;
 
         this.shipTextureRegion = this.rm.fastEnemyShip;
         this.laserTextureRegion = this.rm.fastlEnemyShipLaser;

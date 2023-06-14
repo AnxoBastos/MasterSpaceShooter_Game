@@ -1,5 +1,6 @@
 package org.daw2.anxobastosrey.masterspaceshooter;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import org.daw2.anxobastosrey.masterspaceshooter.MasterSpaceShooter;
@@ -11,6 +12,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("MasterSpaceShooter");
 		config.setWindowedMode(360, 640);
+		config.setWindowIcon("playerLife1_blue.png");
 		new Lwjgl3Application(new MasterSpaceShooter(), config);
 	}
 }

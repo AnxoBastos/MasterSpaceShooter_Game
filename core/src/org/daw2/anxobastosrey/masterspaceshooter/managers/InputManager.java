@@ -2,13 +2,12 @@ package org.daw2.anxobastosrey.masterspaceshooter.managers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import org.daw2.anxobastosrey.masterspaceshooter.MasterSpaceShooter;
-
 import org.daw2.anxobastosrey.masterspaceshooter.screens.GameScreen;
-import org.daw2.anxobastosrey.masterspaceshooter.MasterSpaceShooter;
 import org.daw2.anxobastosrey.masterspaceshooter.entities.PlayerShip;
 import org.daw2.anxobastosrey.masterspaceshooter.screens.Hud;
 
@@ -18,23 +17,21 @@ public class InputManager {
 
     private final MasterSpaceShooter game;
     private final PlayerShip playerShip;
-    private final Hud hud;
     private float gameOverTimer = 0;
 
-    public InputManager(MasterSpaceShooter game, PlayerShip player, Hud hud){
+    public InputManager(MasterSpaceShooter game, PlayerShip player){
         this.game = game;
         this.playerShip = player;
-        this.hud = hud;
     }
 
-    public void detectInput(float deltaTime, Viewport viewport) {
+    public void detectInput(float deltaTime, Viewport viewport, Hud hud) {
         //keyboard input
 
         //strategy: determine the max distance the ship can move
         //check each key that matters and move accordingly
 
         float leftLimit = -this.playerShip.boundingBox.x;
-        float downLimit = (float) (-this.playerShip.boundingBox.y + this.hud.pUShieldButton.getHeight() + 4);
+        float downLimit = (float) (-this.playerShip.boundingBox.y + hud.pUShieldButton.getHeight() + 4);
         float rightLimit = this.game.WORLD_WIDTH - this.playerShip.boundingBox.x - this.playerShip.boundingBox.width;
         float upLimit = (float) this.game.WORLD_HEIGHT * 3/4 - this.playerShip.boundingBox.y - this.playerShip.boundingBox.height;
 
@@ -104,6 +101,7 @@ public class InputManager {
         if(this.playerShip.lives <= 0){
             this.gameOverTimer += deltaTime;
             if((Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) && this.gameOverTimer >= 2){
+                this.game.rm.font.setColor(Color.WHITE);
                 this.game.setScreen(this.game.menuScreen);
             }
         }

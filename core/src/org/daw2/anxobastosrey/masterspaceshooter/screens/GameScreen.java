@@ -11,93 +11,76 @@ import org.daw2.anxobastosrey.masterspaceshooter.entities.PlayerShip;
 import org.daw2.anxobastosrey.masterspaceshooter.managers.InputManager;
 import org.daw2.anxobastosrey.masterspaceshooter.managers.LevelManager;
 import org.daw2.anxobastosrey.masterspaceshooter.managers.ResourceManager;
-import org.daw2.anxobastosrey.masterspaceshooter.screens.Background;
-import org.daw2.anxobastosrey.masterspaceshooter.screens.Hud;
 
 public class GameScreen implements Screen {
 
     //Game
     private final MasterSpaceShooter game;
 
-    //screen
-    private Camera camera;
-    private Viewport viewport;
-
-    //graphics
-    private SpriteBatch batch;
-
     //Background
-    private Background background;
+    private final Background background;
 
     //world parameters
     public static final int[] PU_PRICES = {0, 2000, 6000, 10000};
     public static final int MAX_LVL = 3;
 
     //game objects
-    private PlayerShip playerShip;
+    private final PlayerShip playerShip;
 
     //Hud
-    private Hud hud;
-
-    //Resource manager (font, sounds, textures)
-    private ResourceManager rm;
+    private final Hud hud;
 
     //Player input manager
-    private InputManager inputManager;
+    private final InputManager inputManager;
 
     //Level manager
-    private LevelManager levelManager;
+    private final LevelManager levelManager;
 
     private boolean scoreStored = false;
 
-    public GameScreen(MasterSpaceShooter game, Camera camera, Viewport viewport) {
+    public GameScreen(MasterSpaceShooter game) {
         Gdx.input.setInputProcessor(null);
         this.game = game;
-        this.camera = camera;
-        this.viewport = viewport;
-        this.rm = new ResourceManager();
 
         //set up game objects
-        playerShip = new PlayerShip(rm);
+        this.playerShip = new PlayerShip(this.game.rm);
 
-        batch = new SpriteBatch();
-
-        levelManager = new LevelManager(playerShip, rm, batch);
+        this.levelManager = new LevelManager(this.game, this.playerShip, this.game.rm, this.game.batch);
 
         //Hud
-        hud = new Hud(rm);
+        this.hud = new Hud(this.game.rm);
 
         //Input manager
-        inputManager = new InputManager(this.game, playerShip, hud);
+        this.inputManager = new InputManager(this.game, this.playerShip);
 
         //Background
-        background = new Background(rm);
+        this.background = new Background(this.game.rm);
 
     }
 
     @Override
     public void render(float deltaTime) {
-        this.batch.begin();
+        this.game.batch.begin();
 
-        this.background.renderBackground(deltaTime, this.batch);
-        this.inputManager.detectInput(deltaTime, viewport);
+        this.background.renderBackground(deltaTime, this.game.batch);
+        this.inputManager.detectInput(deltaTime, this.game.viewport, this.hud);
         this.levelManager.update(deltaTime);
         this.levelManager.renderLasers(deltaTime);
         this.levelManager.detectCollisions();
         this.levelManager.updateAndRenderExplosions(deltaTime);
-        this.hud.updateAndRenderHUD(batch, levelManager.score, playerShip);
-        if (playerShip.lives <= 0 && this.scoreStored == false){
+        this.hud.updateAndRenderHUD(this.game.batch, this.levelManager.score, this.playerShip);
+        if (this.playerShip.lives <= 0 && this.scoreStored == false){
             this.game.api.store(levelManager.score);
             this.scoreStored = true;
         }
 
-        this.batch.end();
+        this.game.batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, true);
-        batch.setProjectionMatrix(camera.combined);
+        this.game.viewport.update(width, height, true);
+        this.game.batch.setProjectionMatrix(this.game.camera.combined);
     }
 
     @Override

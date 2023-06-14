@@ -2,6 +2,7 @@ package org.daw2.anxobastosrey.masterspaceshooter.entities;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -13,7 +14,6 @@ public class NormalEnemyShip extends Ship implements Enemy{
     public Vector2 directionVector;
     public float timeSinceLastDirectionChange = 0 ;
     public final float directionChangeFrequency = 0.75f;
-
 
     public NormalEnemyShip(ResourceManager rm){
         super();

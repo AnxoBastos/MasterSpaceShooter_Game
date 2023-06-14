@@ -43,6 +43,9 @@ public class ResourceManager {
     public final TextureRegion shieldLevelOne;
     public final TextureRegion shieldLevelTwo;
     public final TextureRegion shieldLevelThree;
+    public final TextureRegion shieldLevelOnePy;
+    public final TextureRegion shieldLevelTwoPy;
+    public final TextureRegion shieldLevelThreePy;
 
     public final TextureRegion speedUpButton;
     public final TextureRegion speedStampOne;
@@ -107,6 +110,10 @@ public class ResourceManager {
         this.shieldLevelOne = this.atlas.findRegion("shield1");
         this.shieldLevelTwo = this.atlas.findRegion("shield2");
         this.shieldLevelThree = this.atlas.findRegion("shield3");
+
+        this.shieldLevelOnePy = this.atlas.findRegion("shield1py");
+        this.shieldLevelTwoPy = this.atlas.findRegion("shield2py");
+        this.shieldLevelThreePy = this.atlas.findRegion("shield3py");
 
         this.bulletUpButton = this.atlas.findRegion("powerupBlue_things");
         this.bulletStampOne = this.atlas.findRegion("things_bronze");

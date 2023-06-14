@@ -18,7 +18,7 @@ public class Connection {
         String body = "{\"email\":\"" + email + "\", \"password\":\"" + password + "\"}";
         try {
             StringBuffer response = new StringBuffer();
-            URL loginUrl = new URL("http://127.0.0.1:8080/auth/login");
+            URL loginUrl = new URL("http://127.0.0.1:80/auth/login");
             HttpURLConnection conn = (HttpURLConnection) loginUrl.openConnection();
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
@@ -45,7 +45,7 @@ public class Connection {
         if(this.apiToken != null){
             String body = "{\"id\":\"" + this.userId + "\", \"score\":\"" + score + "\", \"date\":\"" + (long)(System.currentTimeMillis()/1000) + "\"}";
             try {
-                URL loginUrl = new URL("http://127.0.0.1:8080/score/store");
+                URL loginUrl = new URL("http://127.0.0.1:80/score/store");
                 HttpURLConnection conn = (HttpURLConnection) loginUrl.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);

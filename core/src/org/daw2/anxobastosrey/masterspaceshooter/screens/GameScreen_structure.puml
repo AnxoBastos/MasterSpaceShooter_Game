@@ -1,0 +1,606 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 10,
+    "backwardDepth": 10,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "org.daw2.anxobastosrey.masterspaceshooter.screens.GameScreen",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3076056 { 
+   	label=daw2
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1779982952 { 
+   	label=anxobastosrey
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Background1077866493[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Background</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   background: TextureRegion[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   backgroundHeight: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   backgroundMaxScrollingSpeed: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   backgroundOffsets: float[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ renderBackground(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BossProtector1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BossProtector</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   boss: BossShip [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hitAndCheckDestroyed(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+BossShip1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)BossShip</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   directionChangeFrequency: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   directionVector: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   protectorsNumber: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   secondaryLaserHeight: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   secondaryLaserTextureRegion: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   secondaryLaserWidth: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastDirectionChange: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ canFireLaser(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ generateProtectors(): LinkedList&lt;BossProtector&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intersects(otherRectangle: Rectangle): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >- randomizeDirectionVector()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(xChange: float, yChange: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Connection673331312[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Connection</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   apiToken: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userId: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ connect(email: String, password: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ store(score: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Explosion1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Explosion</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   DX: float[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   DY: float[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   XS: float[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   YS: float[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   particlecount: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timer: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ draw(batch: SpriteBatch, explosionParticle: TextureRegion)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FastEnemyShip1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FastEnemyShip</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   directionChangeFrequency: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   directionVector: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastDirectionChange: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ canFireLaser(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intersects(otherRectangle: Rectangle): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >- randomizeDirectionVector()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(xChange: float, yChange: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameScreen1077866493[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameScreen</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   background: Background [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   game: MasterSpaceShooter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hud: Hud [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputManager: InputManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   levelManager: LevelManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerShip: PlayerShip [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scoreStored: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hide()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pause()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize(width: int, height: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resume()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+HeavyEnemyShip1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)HeavyEnemyShip</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   bulletLvl: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   directionChangeFrequency: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   directionVector: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastDirectionChange: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ canFireLaser(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intersects(otherRectangle: Rectangle): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >- randomizeDirectionVector()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(xChange: float, yChange: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Hud1077866493[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Hud</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   font: BitmapFont [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudCentreX: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudLeftX: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudRightX: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudRow1Y: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudRow2Y: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudSectionWidth: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   hudVerticalMargin: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   lvlStampMargin: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   lvlUpStampsHeight: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   lvlUpStampsWidth: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   lvlUpStampsY: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pUBulletsButton: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pUButtonMargin: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pUShieldButton: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   pUSpeedButton: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rm: ResourceManager [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ updateAndRenderHUD(batch: SpriteBatch, score: int, playerShip: PlayerShip)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+InputManager411004240[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)InputManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   game: MasterSpaceShooter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameOverTimer: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerShip: PlayerShip [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ detectInput(deltaTime: float, viewport: Viewport, hud: Hud)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Laser1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Laser</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   boundingBox: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bulletDmg: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   height: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserTexture: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   movementSpeed: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   width: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   xCentre: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   yBottom: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LevelManager411004240[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)LevelManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   enemiesPerLevel: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   enemyLaserList: LinkedList&lt;Laser&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   enemyMultiplier: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   enemyShipList: LinkedList&lt;Ship&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   explosionList: ArrayList&lt;Explosion&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   game: MasterSpaceShooter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxBosses: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerLaserList: LinkedList&lt;Laser&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   playerShip: PlayerShip [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   score: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   scoreToUpgradeEnemies: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeBetweenLevels: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastLevel: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ detectCollisions()</TD></TR>
+<TR><TD ALIGN="LEFT" >- generateLevel()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ renderLasers(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateAndRenderExplosions(deltaTime: float)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MasterSpaceShooter701576804[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MasterSpaceShooter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   menuScreen: MenuScreen [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ create()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize(width: int, height: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MenuScreen1077866493[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MenuScreen</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   connectButton: TextButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   email: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   errorLabel: Label [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   exit: TextButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   game: MasterSpaceShooter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   play: TextButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   root: Table [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   settings: TextButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stage: Stage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: Label[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createLabel(text: String, color: Color): Label</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hide()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pause()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(delta: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize(width: int, height: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resume()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NormalEnemyShip1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NormalEnemyShip</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   directionChangeFrequency: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   directionVector: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastDirectionChange: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ canFireLaser(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch, flip: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intersects(otherRectangle: Rectangle): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(deltaTime: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >- randomizeDirectionVector()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(xChange: float, yChange: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerShip1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerShip</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   bulletLvl: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   defaultShield: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   lives: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   points: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLvl: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   speedLvl: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeRegenerateShield: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastShield: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ canFireLaser(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hitAndCheckDestroyed(dmgLevel: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intersects(otherRectangle: Rectangle): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(xChange: float, yChange: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ResourceManager411004240[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ResourceManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   assetManager: AssetManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   atlas: TextureAtlas [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   background: TextureRegion[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bossEnemyShip: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bossEnemyShipCores: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bulletStampOne: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bulletStampThree: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bulletStampTwo: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   bulletUpButton: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   explosionParticle: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   fastEnemyShip: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   fastlEnemyShipLaser: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   font: BitmapFont [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   heavyEnemyShip: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   heavyEnemyShipLaser: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   music: Sound [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   normalEnemyShip: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   normalEnemyShipLaser: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   playerShip: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   playerShipLaser: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLevelOne: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLevelOnePy: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLevelThree: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLevelThreePy: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLevelTwo: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldLevelTwoPy: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldStampOne: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldStampThree: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldStampTwo: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldUpButton: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   skin: Skin [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   speedStampOne: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   speedStampThree: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   speedStampTwo: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   speedUpButton: TextureRegion [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- generateFont(): BitmapFont</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Ship1658582027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Ship</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   boundingBox: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   height: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserDmg: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserHeight: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserList: LinkedList&lt;Laser&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserMovementSpeed: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserTextureRegion: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   laserWidth: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   movementSpeed: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   rm: ResourceManager [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shield: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shieldTextureRegion: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shipTextureRegion: TextureRegion [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeBetweenShots: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   timeSinceLastShot: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   width: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   xCentre: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   yCentre: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ canFireLaser(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ draw(batch: Batch)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fireLasers(): Laser[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hitAndCheckDestroyed(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ intersects(otherRectangle: Rectangle): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ translate(xChange: float, yChange: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(deltaTime: float, batch: SpriteBatch)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+BossProtector1658582027 -> BossShip1658582027[label="boss
+[0..1]"];
+BossShip1658582027 -> FastEnemyShip1658582027[arrowhead=none];
+BossShip1658582027 -> HeavyEnemyShip1658582027[arrowhead=none];
+BossShip1658582027 -> NormalEnemyShip1658582027[arrowhead=none];
+GameScreen1077866493 -> Background1077866493[label="background
+[0..1]"];
+GameScreen1077866493 -> Connection673331312[label="render() -> store()"];
+GameScreen1077866493 -> Hud1077866493[label="hud
+[0..1]"];
+GameScreen1077866493 -> InputManager411004240[label="inputManager
+[0..1]"];
+GameScreen1077866493 -> LevelManager411004240[label="levelManager
+[0..1]"];
+GameScreen1077866493 -> MasterSpaceShooter701576804[label="game
+[0..1]"];
+GameScreen1077866493 -> PlayerShip1658582027[label="playerShip
+[0..1]"];
+Hud1077866493 -> ResourceManager411004240[label="rm
+[0..1]"];
+InputManager411004240 -> MasterSpaceShooter701576804[label="game
+[0..1]"];
+InputManager411004240 -> PlayerShip1658582027[label="playerShip
+[0..1]"];
+LevelManager411004240 -> BossShip1658582027[label="generateLevel() -> generateProtectors()"];
+LevelManager411004240 -> Explosion1658582027[label="explosionList
+[0..*]"];
+LevelManager411004240 -> Laser1658582027[label="enemyLaserList
+[0..*]"];
+LevelManager411004240 -> Laser1658582027[label="playerLaserList
+[0..*]"];
+LevelManager411004240 -> MasterSpaceShooter701576804[label="game
+[0..1]"];
+LevelManager411004240 -> PlayerShip1658582027[label="playerShip
+[0..1]"];
+LevelManager411004240 -> Ship1658582027[label="enemyShipList
+[0..*]"];
+MasterSpaceShooter701576804 -> MenuScreen1077866493[label="menuScreen
+[0..1]"];
+MenuScreen1077866493 -> Background1077866493[label="render() -> renderBackground()"];
+MenuScreen1077866493 -> MasterSpaceShooter701576804[label="game
+[0..1]"];
+Ship1658582027 -> BossProtector1658582027[arrowhead=none, arrowtail=empty, dir=both];
+Ship1658582027 -> BossShip1658582027[arrowhead=none, arrowtail=empty, dir=both];
+Ship1658582027 -> FastEnemyShip1658582027[arrowhead=none, arrowtail=empty, dir=both];
+Ship1658582027 -> HeavyEnemyShip1658582027[arrowhead=none, arrowtail=empty, dir=both];
+Ship1658582027 -> Laser1658582027[label="laserList
+[0..*]"];
+Ship1658582027 -> NormalEnemyShip1658582027[arrowhead=none, arrowtail=empty, dir=both];
+Ship1658582027 -> PlayerShip1658582027[arrowhead=none, arrowtail=empty, dir=both];
+Ship1658582027 -> ResourceManager411004240[label="rm
+[0..1]"];
+    
+}
+@enduml
